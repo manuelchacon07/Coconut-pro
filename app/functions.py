@@ -116,12 +116,13 @@ def test_userexist(user):
  except Exception, e:
   abort(401, "Sorry, acces denied.")
 
-def addnewuser(v_user, v_password, v_name, v_mail, v_date, v_ipdonald, v_ipmickey, v_ipminnie):
+def addnewuser(v_user, v_password, v_name, v_mail, v_date, v_ip1, v_ip2, v_ip3, v_ip4, v_machine1, v_machine2, v_machine3, v_machine4):
  newuser_createrole(v_user, v_password)
  newuser_insertuser(v_user, v_name, v_mail, v_date)
- newuser_insertmaquina(v_user, v_ipmickey, 'Mickey')
- newuser_insertmaquina(v_user, v_ipminnie, 'Minnie')
- newuser_insertmaquina(v_user, v_ipdonald, 'Donald')
+ newuser_insertmaquina(v_user, v_ip1, v_machine1)
+ newuser_insertmaquina(v_user, v_ip2, v_machine2)
+ newuser_insertmaquina(v_user, v_ip3, v_machine3)
+ newuser_insertmaquina(v_user, v_ip4, v_machine4)
  setcoockie('s_user',v_user)
  setcoockie('s_password',v_password)
  setcoockie('s_name', v_name)

@@ -33,11 +33,12 @@ def register():
   v_name = request.forms.get('name')
   v_mail = request.forms.get('mail')
   v_date = request.forms.get('date')
-  v_ipmickey = request.forms.get('ipmickey')
-  v_ipminnie = request.forms.get('ipminnie')
-  v_ipdonald = request.forms.get('ipdonald')
+  v_ip1 = request.forms.get('ip1')
+  v_ip2 = request.forms.get('ip2')
+  v_ip3 = request.forms.get('ip3')
+  v_ip4 = request.forms.get('ip4')
   # Create and insert new user
-  functions.addnewuser(v_user, v_password, v_name, v_mail, v_date, v_ipdonald, v_ipmickey, v_ipminnie)
+  functions.addnewuser(v_user, v_password, v_name, v_mail, v_date, v_ip1, v_ip2, v_ip3, v_ip4)
  else:
   redirect('/')
 

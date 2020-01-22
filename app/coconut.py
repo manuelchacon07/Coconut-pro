@@ -38,7 +38,7 @@ def register():
   v_ip3 = request.forms.get('ip3')
   v_ip4 = request.forms.get('ip4')
   # Create and insert new user
-  functions.addnewuser(v_user, v_password, v_name, v_mail, v_date, v_ip1, v_ip2, v_ip3, v_ip4)
+  functions.addnewuser(v_user, v_password, v_name, v_mail, v_date, v_ip1, v_ip2, v_ip3, v_ip4, v_machine1, v_machine2, v_machine3, v_machine4)
  else:
   redirect('/')
 

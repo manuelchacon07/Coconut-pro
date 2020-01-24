@@ -9,7 +9,7 @@ def test_connection(sql_query, user, password):
  connstring = 'dbname=db_backup host=10.0.0.11 user=%s password=%s' %(user, password)
  try:
   connect = psycopg2.connect(connstring)
-  print sql_query
+  print (sql_query)
   try:
    cur = connect.cursor()
    cur.execute(sql_query)
@@ -22,7 +22,7 @@ def test_connection(sql_query, user, password):
    else:
     redirect('/')
   return resultado
- except Exception, e:
+ except Exception as e:
   abort(401, "Sorry, acces denied.")
 
 
@@ -31,18 +31,18 @@ def selectall(sql_query, v_user, v_password):
  connstring = 'dbname=db_backup host=10.0.0.11 user=%s password=%s' %(v_user, v_password)
  try:
   connect = psycopg2.connect(connstring)
-  print sql_query
+  print (sql_query)
   try:
    cur = connect.cursor()
    cur.execute(sql_query)
    resultado = cur.fetchall()
   except:
-   print sql_query
+   print (sql_query)
   finally:
    if cur is not None:
     cur.close()
   return resultado
- except Exception, e:
+ except Exception as e:
   return template('views/login.tpl')
 
 def database_select(sql_query, v_user, v_password):
@@ -50,7 +50,7 @@ def database_select(sql_query, v_user, v_password):
  connstring = 'dbname=db_backup host=10.0.0.11 user=%s password=%s' %(v_user, v_password)
  try:
   connect = psycopg2.connect(connstring)
-  print sql_query
+  print (sql_query)
   try:
    cur = connect.cursor()
    cur.execute(sql_query)
@@ -63,7 +63,7 @@ def database_select(sql_query, v_user, v_password):
    else:
     return "";
   return resultado
- except Exception , e:
+ except Exception as e:
   return template('views/login.tpl')
 
 
@@ -73,21 +73,21 @@ def database_insert(sql_query, v_user, v_password):
  connstring = 'dbname=db_backup host=10.0.0.11 user=%s password=%s' %(v_user, v_password)
  try:
   connect = psycopg2.connect(connstring)
-  print sql_query
+  print (sql_query)
   try:
    cur = connect.cursor()
    cur.execute(sql_query)
    resultado = cur.statusmessage
    connect.commit()
-  except Exception , e:
-   print 'ERROR:', e[0]
+  except Exception as e:
+   print ('ERROR:', e[0])
    if cur is not None:
     connect.rollback()
   finally:
    if cur is not None:
     cur.close()
   return cur.statusmessage
- except Exception, e:
+ except Exception as e:
   return template('views/login.tpl')
 
 def test_userexist(user):
@@ -100,7 +100,7 @@ def test_userexist(user):
  sql_query = "SELECT user_user FROM users WHERE user_user = '%s'" %(user)
  try:
   connect = psycopg2.connect(connstring)
-  print sql_query
+  print (sql_query)
   try:
    cur = connect.cursor()
    cur.execute(sql_query)
@@ -113,7 +113,7 @@ def test_userexist(user):
    else:
     redirect('/')
   return resultado
- except Exception, e:
+ except Exception as e:
   abort(401, "Sorry, acces denied.")
 
 def addnewuser(v_user, v_password, v_name, v_mail, v_date, v_ip1, v_ip2, v_ip3, v_ip4, v_machine1, v_machine2, v_machine3, v_machine4):
@@ -139,18 +139,18 @@ def newuser_createrole(v_user, v_password):
  createrole = "create role \"%s\" password '%s' login in role pupilgroup;" %(v_user, v_password)
  try:
   connect = psycopg2.connect(connstring)
-  print createrole
+  print (createrole)
   try:
    cur = connect.cursor()
    cur.execute(createrole)
    resultado = cur.statusmessage
    connect.commit()
-  except Exception , e:
-   print 'ERROR:', e[0]
+  except Exception as e:
+   print ('ERROR:', e[0])
    if cur is not None:
     connect.rollback()
   return cur.statusmessage
- except Exception, e:
+ except Exception as e:
   return template('views/login.tpl')
 
 def newuser_insertuser(v_user, v_name, v_mail, v_date ):
@@ -163,18 +163,18 @@ def newuser_insertuser(v_user, v_name, v_mail, v_date ):
  adduser = "insert into users values ('%s', '%s', '%s', to_date('%s', 'DD/MM/YYYY'), '%s');" %(v_user, v_name, v_mail, v_date, '2')
  try:
   connect = psycopg2.connect(connstring)
-  print adduser
+  print (adduser)
   try:
    cur = connect.cursor()
    cur.execute(adduser)
    resultado = cur.statusmessage
    connect.commit()
-  except Exception , e:
-   print 'ERROR:', e[0]
+  except Exception as e:
+   print ('ERROR:', e[0])
    if cur is not None:
     connect.rollback()
   return cur.statusmessage
- except Exception, e:
+ except Exception as e:
   return template('views/login.tpl')
 
 def newuser_insertmaquina(v_user, v_ip, v_nombremaquina):
@@ -187,18 +187,18 @@ def newuser_insertmaquina(v_user, v_ip, v_nombremaquina):
  insertmaquina = "insert into hosts values ('%s', '%s', '%s')" %(v_ip, v_nombremaquina, v_user)
  try:
   connect = psycopg2.connect(connstring)
-  print insertmaquina
+  print (insertmaquina)
   try:
    cur = connect.cursor()
    cur.execute(insertmaquina)
    resultado = cur.statusmessage
    connect.commit()
-  except Exception , e:
-   print 'ERROR:', e[0]
+  except Exception as e:
+   print ('ERROR:', e[0])
    if cur is not None:
     connect.rollback()
   return cur.statusmessage
- except Exception, e:
+ except Exception as e:
   return template('views/login.tpl')
 
 def miniavatar(v_user, v_password):

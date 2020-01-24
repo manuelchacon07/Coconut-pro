@@ -1,4 +1,3 @@
-
 import os
 from bottle import route,run,get,template,request, static_file, response, redirect, app, debug, abort, error
 import psycopg2
@@ -122,16 +121,16 @@ def backups():
   # Request session
   v_password = functions.getcoockie('s_password')
   v_role = functions.getcoockie('s_role')
-  print v_role
+  print (v_role)
   # Filter role 1
   if str(v_role) in '1':
-   print 'Soy profesor'
+   print ('Soy profesor')
    v_fromdate = request.forms.get('date1')
    v_todate = request.forms.get('date2')
    v_hostname = request.forms.get('hostname')
    v_student = request.forms.get('students')
-   print v_student
-   print v_hostname
+   print (v_student)
+   print (v_hostname)
    selectallstudents="select user_name from users;"
    students=functions.selectall(selectallstudents, v_user, v_password)
    if v_student == "" or v_student == None:

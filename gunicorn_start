@@ -1,0 +1,24 @@
+#!/bin/bash
+
+NAME="Coconut"
+COCONUTDIR=/var/www/html/Coconut-pro/app
+USER=nginx
+GROUP=nginx
+WORKERS=3
+BIND=unix:/run/gunicorn.sock
+COCONUT_WSGI_MODULE=coconut.wsgi
+LOGLEVEL=error
+
+cd $COCUNUTDIR
+source /home/centos/pythonenv/Coconut/bin/activate
+
+export PYTHONPATH=$COCONUTDIR:$PYTHONPATH
+
+exec /home/centos/pythonenv/Coconut/lib/python3.6/site-packages/gunicorn ${COCONUT_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $WORKERS \
+  --user=$USER \
+  --group=$GROUP \
+  --bind=$BIND \
+  --log-level=$LOGLEVEL \
+  --log-file=-
